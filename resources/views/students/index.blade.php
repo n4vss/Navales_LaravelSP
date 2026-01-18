@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Student List') {{-- Setting the page title --}}
+
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Student List</h2>
@@ -13,7 +15,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Email</th>
                     <th>Course</th>
                     <th>Year Level</th>
                     <th>Actions</th>
@@ -24,12 +25,19 @@
                 <tr>
                     <td>{{ $user['id'] }}</td>
                     <td>{{ $user['name'] }}</td>
-                    <td>{{ $user['email'] }}</td>
                     <td>{{ $user['course'] }}</td>
                     <td>{{ $user['year'] }}</td>
                     <td>
-                        <a href="{{ url('/students/' . $user['id']) }}" class="btn btn-sm btn-info text-white">View</a>
-                        <a href="{{ url('/students/' . $user['id'] . '/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+                        <x-actionButton 
+                            href="{{ url('/students/' . $user['id']) }}" 
+                            type="view">
+                            View
+                        </x-actionButton>   
+                        <x-actionButton 
+                            href="{{ url('/students/' . $user['id'] . '/edit') }}" 
+                            type="edit">
+                            Edit
+                        </x-actionButton>
                     </td>
                 </tr>
                 @endforeach
